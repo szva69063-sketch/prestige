@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ПРЕСТИЖ — Элитное такси</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#FFD700" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="header-brand">
+          <div class="brand-title">ПРЕСТИЖ</div>
+          <div class="brand-subtitle">Элитное такси</div>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <form id="orderForm" class="order-card">
+          <div class="field-group">
+            <label class="field-label" for="fromInput">
+              <span class="label-icon">📍</span>
+              ОТКУДА
+            </label>
+            <div class="input-container">
+              <input
+                id="fromInput"
+                name="from"
+                type="text"
+                class="field-input"
+                placeholder="Введите адрес отправления"
+                autocomplete="off"
+                required
+              />
+              <button type="button" class="map-btn" id="fromMapBtn" title="Выбрать на карте">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#E53935"/>
+                </svg>
+              </button>
+            </div>
+            <div class="autocomplete-dropdown" id="fromAutocomplete"></div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="toInput">
+              <span class="label-icon">📍</span>
+              КУДА
+            </label>
+            <div class="input-container">
+              <input
+                id="toInput"
+                name="to"
+                type="text"
+                class="field-input"
+                placeholder="Введите адрес назначения"
+                autocomplete="off"
+                required
+              />
+              <button type="button" class="map-btn" id="toMapBtn" title="Выбрать на карте">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#E53935"/>
+                </svg>
+              </button>
+            </div>
+            <div class="autocomplete-dropdown" id="toAutocomplete"></div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="additionalStops">
+              <span class="label-icon">+</span>
+              ДОПОЛНИТЕЛЬНЫЕ ТОЧКИ
+            </label>
+            <div id="additionalStopsContainer"></div>
+            <button type="button" class="add-stop-btn" id="addStopBtn">
+              + ДОБАВИТЬ ТОЧКУ
+            </button>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="priorityInput">
+              <span class="label-icon">⭐</span>
+              ПРИОРИТЕТНЫЙ ЗАКАЗ (ОПЦИОНАЛЬНО)
+            </label>
+            <input
+              id="priorityInput"
+              name="priority"
+              type="number"
+              class="field-input"
+              placeholder="Добавить к стоимости (Р)"
+              min="0"
+              step="50"
+            />
+            <div class="field-hint">Ваш заказ будет обработан в первую очередь</div>
+          </div>
+
+          <div class="price-summary">
+            <div class="price-row">
+              <span class="price-label">Базовый тариф:</span>
+              <span class="price-value" id="basePrice">150 ₽</span>
+            </div>
+            <div class="price-row total-row">
+              <span class="price-label">Итого:</span>
+              <span class="price-value total-price" id="totalPrice">150 ₽</span>
+            </div>
+          </div>
+        </form>
+
+        <button type="submit" class="order-btn" id="submitBtn" form="orderForm">
+          ЗАКАЗАТЬ ТАКСИ
+        </button>
+      </main>
+
+      <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
